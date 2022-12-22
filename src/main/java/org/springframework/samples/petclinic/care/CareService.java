@@ -13,8 +13,14 @@ import org.springframework.transaction.annotation.Transactional;
 @Service
 public class CareService {    
 
-    @Autowired
+    
     CareProvisionRepository cpr;
+
+    @Autowired
+	public CareService(CareProvisionRepository cpr) {
+		this.cpr = cpr;
+	}
+
     public List<Care> getAllCares(){
         return null;
     }
@@ -24,15 +30,15 @@ public class CareService {
     }
     
     public Care getCare(String careName) {
-        return null;
+        return cpr.getCare();
     }
     
     public CareProvision save(CareProvision p) throws NonCompatibleCaresException, UnfeasibleCareException {        
         return null;   
     }
-
+    @Transactional
     public List<CareProvision> getAllCaresProvided(){
-        return null;
+        return cpr.findAll();
     }
 
     public List<CareProvision> getCaresProvidedInVisitById(Integer visitId){
